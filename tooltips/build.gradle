@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.vanniktech.maven.publish'
+// apply plugin: 'com.vanniktech.maven.publish'
 
 File localPropsFile = project.rootProject.file('local.properties')
 if (localPropsFile.exists()) {
