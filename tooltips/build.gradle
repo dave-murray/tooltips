@@ -10,11 +10,11 @@ if (localPropsFile.exists()) {
 }
 
 android {
-    compileSdkVersion 31
+    compileSdk 34
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 31
+        minSdkVersion 19
+        targetSdk 34
     }
     buildTypes {
         release {
