@@ -17,9 +17,7 @@ limitations under the License.
 package com.tomergoldst.tooltips;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.view.View;
 
 import androidx.core.content.ContextCompat;
@@ -131,11 +129,7 @@ class ToolTipBackgroundConstructor {
         Drawable drawable;
         drawable = ContextCompat.getDrawable(context, drawableRes);
         if (drawable != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                drawable.setTint(color);
-            } else {
-                drawable.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
-            }
+            drawable.setTint(color);
         }
 
         return drawable;

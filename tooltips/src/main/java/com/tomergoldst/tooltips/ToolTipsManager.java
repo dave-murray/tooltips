@@ -174,18 +174,16 @@ public class ToolTipsManager {
     }
 
     private void setTipViewElevation(TextView tipView, ToolTip toolTip) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (toolTip.getElevation() > 0) {
-                ViewOutlineProvider viewOutlineProvider = new ViewOutlineProvider() {
-                    @SuppressLint("NewApi")
-                    @Override
-                    public void getOutline(View view, Outline outline) {
-                        outline.setEmpty();
-                    }
-                };
-                tipView.setOutlineProvider(viewOutlineProvider);
-                tipView.setElevation(toolTip.getElevation());
-            }
+        if (toolTip.getElevation() > 0) {
+            ViewOutlineProvider viewOutlineProvider = new ViewOutlineProvider() {
+                @SuppressLint("NewApi")
+                @Override
+                public void getOutline(View view, Outline outline) {
+                    outline.setEmpty();
+                }
+            };
+            tipView.setOutlineProvider(viewOutlineProvider);
+            tipView.setElevation(toolTip.getElevation());
         }
     }
 
