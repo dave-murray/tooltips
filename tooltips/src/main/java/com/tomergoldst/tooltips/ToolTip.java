@@ -178,7 +178,6 @@ public class ToolTip {
         return mTypeface;
     }
 
-    @NonNull
     public int getTextGravity(){
         int gravity;
         switch (mTextGravity){
