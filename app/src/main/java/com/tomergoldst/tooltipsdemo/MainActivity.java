@@ -111,16 +111,14 @@ public class MainActivity extends Activity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.use_custom_font_menu_item:
-                mCustomFont = Typeface.createFromAsset(getAssets(), "Pacifico-Regular.ttf");
-                Toast toast = Toast.makeText(this, "Custom font set. Re-try demo.", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.use_custom_font_menu_item) {
+            mCustomFont = Typeface.createFromAsset(getAssets(), "Pacifico-Regular.ttf");
+            Toast toast = Toast.makeText(this, "Custom font set. Re-try demo.", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
 
