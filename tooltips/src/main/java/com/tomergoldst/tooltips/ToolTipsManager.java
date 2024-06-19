@@ -116,12 +116,7 @@ public class ToolTipsManager {
         moveTipToCorrectPosition(tipView, p);
 
         // set dismiss on click
-        tipView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss(view, true);
-            }
-        });
+        tipView.setOnClickListener(view -> dismiss(view, true));
 
         // bind tipView with anchorView id
         int anchorViewId = toolTip.getAnchorView().getId();
