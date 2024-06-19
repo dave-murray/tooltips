@@ -16,6 +16,7 @@ limitations under the License.
 
 package com.tomergoldst.tooltipsdemo;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -148,6 +149,7 @@ public class MainActivity extends Activity implements
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         String text = TextUtils.isEmpty(mEditText.getText()) ? TIP_TEXT : mEditText.getText().toString();
