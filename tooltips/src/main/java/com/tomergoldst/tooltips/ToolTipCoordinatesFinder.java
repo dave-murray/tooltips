@@ -199,9 +199,6 @@ class ToolTipCoordinatesFinder {
             case ToolTip.ALIGN_CENTER:
                 offset = ((toolTip.getAnchorView().getWidth() - tipView.getMeasuredWidth()) / 2);
                 break;
-            case ToolTip.ALIGN_LEFT:
-                offset = 0;
-                break;
             case ToolTip.ALIGN_RIGHT:
                 offset = toolTip.getAnchorView().getWidth() - tipView.getMeasuredWidth();
                 break;
