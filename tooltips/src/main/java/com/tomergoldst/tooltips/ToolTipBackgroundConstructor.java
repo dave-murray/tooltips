@@ -17,10 +17,10 @@ limitations under the License.
 package com.tomergoldst.tooltips;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.view.View;
+
+import androidx.core.content.ContextCompat;
 
 class ToolTipBackgroundConstructor {
 
@@ -122,25 +122,14 @@ class ToolTipBackgroundConstructor {
     }
 
     private static void setViewBackground(View view, Drawable drawable){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            view.setBackground(drawable);
-        } else {
-            view.setBackgroundDrawable(drawable);
-        }
+        view.setBackground(drawable);
     }
 
     private static Drawable getTintedDrawable(Context context, int drawableRes, int color){
         Drawable drawable;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            drawable = context.getResources().getDrawable(drawableRes, null);
-            if (drawable != null) {
-                drawable.setTint(color);
-            }
-        } else {
-            drawable = context.getResources().getDrawable(drawableRes);
-            if (drawable != null) {
-                drawable.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
-            }
+        drawable = ContextCompat.getDrawable(context, drawableRes);
+        if (drawable != null) {
+            drawable.setTint(color);
         }
 
         return drawable;

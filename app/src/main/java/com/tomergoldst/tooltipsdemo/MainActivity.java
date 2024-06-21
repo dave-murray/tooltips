@@ -16,6 +16,7 @@ limitations under the License.
 
 package com.tomergoldst.tooltipsdemo;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -111,16 +112,14 @@ public class MainActivity extends Activity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.use_custom_font_menu_item:
-                mCustomFont = Typeface.createFromAsset(getAssets(), "Pacifico-Regular.ttf");
-                Toast toast = Toast.makeText(this, "Custom font set. Re-try demo.", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.use_custom_font_menu_item) {
+            mCustomFont = Typeface.createFromAsset(getAssets(), "Pacifico-Regular.ttf");
+            Toast toast = Toast.makeText(this, "Custom font set. Re-try demo.", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -144,12 +143,9 @@ public class MainActivity extends Activity implements
     @Override
     public void onTipDismissed(View view, int anchorViewId, boolean byUser) {
         Log.d(TAG, "tip near anchor view " + anchorViewId + " dismissed");
-
-        if (anchorViewId == R.id.text_view) {
-            // Do something when a tip near view with id "R.id.text_view" has been dismissed
-        }
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         String text = TextUtils.isEmpty(mEditText.getText()) ? TIP_TEXT : mEditText.getText().toString();

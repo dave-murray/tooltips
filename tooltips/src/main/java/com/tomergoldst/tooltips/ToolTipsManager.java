@@ -23,7 +23,6 @@ import android.graphics.Outline;
 import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Build;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.TextView;
@@ -78,17 +77,6 @@ public class ToolTipsManager {
     }
 
     private View create(ToolTip toolTip) {
-
-        if (toolTip.getAnchorView() == null) {
-            Log.e(TAG, "Unable to create a tip, anchor view is null");
-            return null;
-        }
-
-        if (toolTip.getRootView() == null) {
-            Log.e(TAG, "Unable to create a tip, root layout is null");
-            return null;
-        }
-
         // only one tip is allowed near an anchor view at the same time, thus
         // reuse tip if already exist
         if (mTipsMap.containsKey(toolTip.getAnchorView().getId())) {
@@ -116,12 +104,7 @@ public class ToolTipsManager {
         moveTipToCorrectPosition(tipView, p);
 
         // set dismiss on click
-        tipView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss(view, true);
-            }
-        });
+        tipView.setOnClickListener(view -> dismiss(view, true));
 
         // bind tipView with anchorView id
         int anchorViewId = toolTip.getAnchorView().getId();
@@ -179,18 +162,16 @@ public class ToolTipsManager {
     }
 
     private void setTipViewElevation(TextView tipView, ToolTip toolTip) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (toolTip.getElevation() > 0) {
-                ViewOutlineProvider viewOutlineProvider = new ViewOutlineProvider() {
-                    @SuppressLint("NewApi")
-                    @Override
-                    public void getOutline(View view, Outline outline) {
-                        outline.setEmpty();
-                    }
-                };
-                tipView.setOutlineProvider(viewOutlineProvider);
-                tipView.setElevation(toolTip.getElevation());
-            }
+        if (toolTip.getElevation() > 0) {
+            ViewOutlineProvider viewOutlineProvider = new ViewOutlineProvider() {
+                @SuppressLint("NewApi")
+                @Override
+                public void getOutline(View view, Outline outline) {
+                    outline.setEmpty();
+                }
+            };
+            tipView.setOutlineProvider(viewOutlineProvider);
+            tipView.setElevation(toolTip.getElevation());
         }
     }
 
